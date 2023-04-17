@@ -1,0 +1,7 @@
+create TABLE PERSON(
+	id bigint  NOT NULL  IDENTITY(0, 1) PRIMARY KEY,
+	address varchar(100) NOT NULL,
+	FIRST_NAME varchar(80) NOT NULL,
+	GENDER varchar(6) NOT NULL,
+	LAST_NAME VARCHAR(80) NOT NULL
+);
