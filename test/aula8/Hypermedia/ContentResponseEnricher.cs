@@ -19,7 +19,7 @@ namespace aula8.Hypermedia
         protected abstract Task EnrichModel(T content, IUrlHelper urlHelper);
         
 
-        bool IResposnseEnricher.CanEnrich(ResultExecutedContext context)
+        bool IResposnseEnricher.CanEnrich(ResultExecutingContext context)
         {
             if (context.Result is OkObjectResult okObjectResult)
             {

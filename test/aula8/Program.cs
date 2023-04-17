@@ -1,3 +1,5 @@
+using aula8.Hypermedia.Enricher;
+using aula8.Hypermedia.Filters;
 using aula8.Models;
 using aula8.Models.Context;
 using aula8.Repositorys;
@@ -7,7 +9,7 @@ using aula8.Services;
 using aula8.Services.Implementations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
-
+var filterOptions=new HyperMediaFilterOptions();
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 var conexao = builder.Configuration.GetConnectionString("SQLConnection");
@@ -21,7 +23,9 @@ builder.Services.AddScoped<IBookServices, BookServiceImplementations>();
 //builder.Services.AddScoped<IRepository, PersonRespositoryImplmentation>();
 //builder.Services.AddScoped<IBookRepository, BookRepositoryImplementation>();
 builder.Services.AddScoped(typeof(IRepository<>),typeof(GenericRepository<>));
-
+filterOptions.ContentResponseEnricherList.Add(new PersonEnricher());
+filterOptions.ContentResponseEnricherList.Add(new BookEnricher());
+builder.Services.AddSingleton(filterOptions);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddMvc(options =>
@@ -48,5 +52,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.MapControllerRoute("DefaultApi", "{controller=values}/v{version}/{id?}");
 app.Run();
