@@ -1,12 +1,14 @@
 ﻿using aula8.Data.VO;
 using aula8.Hypermedia.Filters;
 using aula8.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace aula8.Controllers
 {  
     [ApiVersion("1")]
     [ApiController]
+    [Authorize("Bearer")]
     [Route("[controller]/v{version:ApiVersion}")]
     public class BookController:ControllerBase
     {
