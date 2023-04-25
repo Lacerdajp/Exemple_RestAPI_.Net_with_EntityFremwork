@@ -18,8 +18,9 @@ namespace aula8.Repositorys.Implementations
 
         public User ValidateCredential(UserVO user)
         {
-            var pass = ComputeHash((string)user.Password, new SHA256CryptoServiceProvider());
-            return _context.users.FirstOrDefault(u => (u.UserName == user.UserName) && (u.Password == pass));
+            string pass = ComputeHash(user.Password, new SHA256CryptoServiceProvider());
+            Console.WriteLine(pass);
+            return _context.users.FirstOrDefault(u =>  (u.UserName == user.UserName) && (u.Password == pass));
         }
         public User RefreshUserInfo (User user)
         {

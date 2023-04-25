@@ -9,11 +9,11 @@ namespace aula8.Models
         
             [Key]
             [Column ("id")]
-            public int Id { get; set; }
+            public long Id { get; set; }
             [Column ("user_name")]
             public string UserName { get; set; }
             [Column ("full_name")]
-            public int FullName { get; set; }
+            public string FullName { get; set; }
             [Column("password")]
             public string Password { get; set; }
             [Column("refresh_token")]

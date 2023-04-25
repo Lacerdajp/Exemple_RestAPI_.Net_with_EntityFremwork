@@ -9,7 +9,7 @@ namespace aula8.Controllers
 {
     [ApiVersion("1")]
     [ApiController]
-    [Authorize("Bearer")]
+   [Authorize("Bearer")]
     [Route("[controller]/v{version:apiVersion}")]
     public class PersonController : ControllerBase
     {

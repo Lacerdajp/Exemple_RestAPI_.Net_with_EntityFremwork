@@ -94,10 +94,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseAuthentication();
 
 app.UseRouting();
-
+app.UseAuthorization(); 
 app.UseCors();
 app.MapControllers();
 app.MapControllerRoute("DefaultApi", "{controller=values}/v{version}/{id?}");

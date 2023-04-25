@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\VO\NewFolder\**" />
+    <Content Remove="Data\VO\NewFolder\**" />
+    <EmbeddedResource Remove="Data\VO\NewFolder\**" />
+    <None Remove="Data\VO\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Converter\Implementatations\userConVerter.cs" />
     <Compile Remove="PersonRepositoryImplementation.cs" />
   </ItemGroup>
 
@@ -23,10 +31,6 @@
     <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

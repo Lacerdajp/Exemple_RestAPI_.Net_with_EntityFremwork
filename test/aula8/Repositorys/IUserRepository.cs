@@ -6,6 +6,6 @@ namespace aula8.Repositorys
     public interface IUserRepository
     {
         User ValidateCredential(UserVO user);
-        User RefreshUserInfo(User user;
+        User RefreshUserInfo(User user);
     }
 }
