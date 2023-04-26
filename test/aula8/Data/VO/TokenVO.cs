@@ -1,7 +1,10 @@
-﻿namespace aula8.Data.VO
+﻿using Azure.Core;
+
+namespace aula8.Data.VO
 {
     public class TokenVO
     {
+     
         public TokenVO(bool authentication, string created, string expiration, string acessToken, string refreshToken)
         {
             Authentication = authentication;

@@ -1,0 +1,554 @@
+{
+	"info": {
+		"_postman_id": "dca24741-6f6e-4651-9080-51b1b799ca97",
+		"name": "Exemple_Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11641436"
+	},
+	"item": [
+		{
+			"name": "Person",
+			"item": [
+				{
+					"name": "GetAllPerson",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AcessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{urlBase}}/Person/v{{Version}}",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"Person",
+								"v{{Version}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUniquePerson",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AcessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{urlBase}}/Person/v{{Version}}/{{id}}",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"Person",
+								"v{{Version}}",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PersonPost",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AcessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"firstName\": \"Jorge \",\r\n  \"lastName\": \"Duarte\",\r\n  \"address\": \"São João\",\r\n  \"gender\": \"male\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlBase}}/Person/v{{Version}}",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"Person",
+								"v{{Version}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PersonPut",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AcessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n     \"id\": 6,\r\n   \"firstName\": \"Jorge \",\r\n  \"lastName\": \"Duarte\",\r\n  \"address\": \"São João de Meriti\",\r\n  \"gender\": \"male\"\r\n  }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlBase}}/Person/v{{Version}}",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"Person",
+								"v{{Version}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeletePerson",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AcessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{urlBase}}/Person/v{{Version}}/{{id}}",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"Person",
+								"v{{Version}}",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(responseCode.code>=200&&responseCode.code<=299){\r",
+									"    var jsonData=JSON.parse(responseBody);\r",
+									"    pm.collectionVariables.set(\"AcessToken\",jsonData.acessToken);\r",
+									"    pm.collectionVariables.set(\"RefreshToken\",jsonData.refreshToken);\r",
+									"      pm.collectionVariables.set(\"Expiration\",jsonData.expiration);\r",
+									"    pm.collectionVariables.set(\"Created\",jsonData.created);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"UserName\": \"JPLS\",\r\n    \"Password\":\"teste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlBase}}/Auth/v{{Version}}/singin",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"Auth",
+								"v{{Version}}",
+								"singin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(responseCode.code>=200&&responseCode.code<=299){\r",
+									"    var jsonData=JSON.parse(responseBody);\r",
+									"    pm.collectionVariables.set(\"AcessToken\",jsonData.acessToken);\r",
+									"    pm.collectionVariables.set(\"RefreshToken\",jsonData.refreshToken);\r",
+									"    pm.collectionVariables.set(\"Expiration\",jsonData.expiration);\r",
+									"    pm.collectionVariables.set(\"Created\",jsonData.created);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"created\": \"{{Created}}\",\r\n    \"expiration\": \"{{Expiration}}\",\r\n    \"acessToken\": \"{{AcessToken}}\",\r\n    \"refreshToken\": \"{{RefreshToken}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlBase}}/Auth/v{{Version}}/refresh",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"Auth",
+								"v{{Version}}",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Revoke",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AcessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlBase}}/Auth/v{{Version}}/revoke",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"Auth",
+								"v{{Version}}",
+								"revoke"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "GetAllBooks",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AcessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{urlBase}}/Book/v{{Version}}",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"Book",
+								"v{{Version}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUniqueBook",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AcessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{urlBase}}/Book/v{{Version}}/{{id}}",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"Book",
+								"v{{Version}}",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BookPost",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AcessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"Como ser Gerente sem ter experiencia\",\r\n    \"autor\": \"Jorginho\",\r\n    \"valor\": 80.00,\r\n    \"data\": \"2013-06-27T00:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlBase}}/Book/v{{Version}}",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"Book",
+								"v{{Version}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BookPut",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AcessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":6,\r\n    \"titulo\": \"Como ser Gerente sem ter experiencia\",\r\n    \"autor\": \"Jorginho\",\r\n    \"valor\": 80.00,\r\n    \"data\": \"2023-06-27T00:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlBase}}/Book/v{{Version}}",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"Book",
+								"v{{Version}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BookDelete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AcessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{urlBase}}/Book/v{{Version}}/{{id}}",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"Book",
+								"v{{Version}}",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Version",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "urlBase",
+			"value": "https://localhost:7098",
+			"type": "string"
+		},
+		{
+			"key": "AcessToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "RefreshToken",
+			"value": ""
+		},
+		{
+			"key": "Created",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "Expiration",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

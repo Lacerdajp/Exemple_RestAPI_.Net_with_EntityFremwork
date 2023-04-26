@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace aula8.Models
 {
@@ -17,7 +18,7 @@ namespace aula8.Models
             [Column("password")]
             public string Password { get; set; }
             [Column("refresh_token")]
-            public string RefreshToken { get; set; }
+            public string? RefreshToken { get; set; }
             [Column("refresh_token_expiry_time")]
             public DateTime RefreshTokenExpiryTime { get; set; }
         

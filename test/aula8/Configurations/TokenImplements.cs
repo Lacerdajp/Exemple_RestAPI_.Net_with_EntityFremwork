@@ -57,11 +57,12 @@ namespace aula8.Configurations
             SecurityToken securityToken;
             var principal = tokenHandler.ValidateToken(token, tokenValidationParams, out securityToken);
             var jwtSecurityToken=securityToken as JwtSecurityToken;
-            if (jwtSecurityToken != null |
-                !jwtSecurityToken.Header.Alg.Equals(
+           var x=!jwtSecurityToken.Header.Alg.Equals(
                     SecurityAlgorithms.HmacSha256, StringComparison.InvariantCulture
-                    )
-                )
+                    );
+            if (jwtSecurityToken == null ||
+               x
+                ) 
                 throw new SecurityTokenException("Invalid Token");
             return principal;
         }

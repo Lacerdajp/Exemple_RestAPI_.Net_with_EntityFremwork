@@ -21,10 +21,14 @@ namespace aula8.Repositorys.Implementations
             string pass = ComputeHash(user.Password, new SHA256CryptoServiceProvider());
             Console.WriteLine(pass);
             return _context.users.FirstOrDefault(u =>  (u.UserName == user.UserName) && (u.Password == pass));
+        } 
+        public User ValidateCredential(string userName)
+        {
+            return _context.users.SingleOrDefault(u => (u.UserName == userName));
         }
         public User RefreshUserInfo (User user)
         {
-            if(_context.users.Any(p => p.Id.Equals(user.Id)))
+            if(!_context.users.Any(p => p.Id.Equals(user.Id)))
             {
                 return null;
             }
@@ -36,13 +40,21 @@ namespace aula8.Repositorys.Implementations
                     _context.Entry(result).CurrentValues.SetValues(user);
                     _context.SaveChanges();
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
-                    throw ex;
+                    throw;
                 }
 
             }
             return result;
+        } 
+        public bool RevokeToken(string username)
+        {
+            var user=_context.users.SingleOrDefault(u => u.UserName == username);
+            if (user is null) return false;
+            user.RefreshToken = null;
+            _context.SaveChanges();
+            return true;
         }
         private string ComputeHash(string input, SHA256CryptoServiceProvider alghorithm)
         {
@@ -51,5 +63,7 @@ namespace aula8.Repositorys.Implementations
             return BitConverter.ToString(hashedBytes);
 
         }
+
+       
     }
 }

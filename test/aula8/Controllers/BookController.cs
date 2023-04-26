@@ -47,7 +47,7 @@ namespace aula8.Controllers
             if (book == null) return BadRequest();
             return Ok(_bookServices.Update(book));
         }
-        [HttpDelete("id")]
+        [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             _bookServices.Delete(id);
