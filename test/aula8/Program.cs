@@ -21,7 +21,7 @@ var builder = WebApplication.CreateBuilder(args);
 var tokenConfigurations = new TokenConfiguration();
 // Add services to the container.
 var conexao = builder.Configuration.GetConnectionString("SQLConnection");
-builder.Services.AddDbContext<SqlContext>(x => x.UseSqlServer(
+builder.Services.AddDbContext<SqlContext>(x => x.UseNpgsql(
      builder.Configuration["ConnectionString:SQLConnection"]
     ));
 builder.Services.AddApiVersioning();
