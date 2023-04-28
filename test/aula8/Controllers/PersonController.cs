@@ -36,6 +36,13 @@ namespace aula8.Controllers
             if (person == null) return NotFound();
             return Ok(person);
         }
+        [HttpPatch("{id}")]
+        [TypeFilter(typeof(HyperMediaFilter))]
+        public IActionResult Patch(long id)
+        {
+            var person = _personRepository.Disable(id);
+            return Ok(person);
+        }
         [HttpPost]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Post([FromBody] PersonVO person)

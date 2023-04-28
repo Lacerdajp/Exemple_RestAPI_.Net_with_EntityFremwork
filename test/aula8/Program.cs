@@ -35,7 +35,7 @@ builder.Services.AddScoped<IBookServices, BookServiceImplementations>();
 builder.Services.AddScoped<ILoginServices, LoginServiceImplementations>();
 builder.Services.AddTransient<ITokenInterface, TokenImplements>();
 builder.Services.AddScoped<IUserRepository, UserRepositoryImplementation>();
-//builder.Services.AddScoped<IRepository, PersonRespositoryImplmentation>();
+builder.Services.AddScoped<IPersonRepository, PersonRespositoryImplmentation>();
 //builder.Services.AddScoped<IBookRepository, BookRepositoryImplementation>();
 builder.Services.AddScoped(typeof(IRepository<>),typeof(GenericRepository<>));
 filterOptions.ContentResponseEnricherList.Add(new PersonEnricher());

@@ -1,82 +1,33 @@
 ﻿using aula8.Models;
 using aula8.Models.Context;
+using aula8.Repositorys.Generic;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using System;
 
 namespace aula8.Repositorys.Implementations
 {
-    public class PersonRespositoryImplmentation : IRepository
+    public class PersonRespositoryImplmentation : GenericRepository<Person>,IPersonRepository
     {
-        private SqlContext _context;
+        public PersonRespositoryImplmentation(SqlContext context) : base(context) { }
 
-        public PersonRespositoryImplmentation(SqlContext context)
+        public Person Disable(long id)
         {
-            _context = context;
-        }
-
-        public Person Create(Person person)
-        {
-            try
+            if (!_context.Persons.Any(p => p.id.Equals(id))) return null;
+            var user = _context.Persons.SingleOrDefault(p => p.id.Equals(id));
+            if (user != null)
             {
-                _context.Add(person);
-                _context.SaveChanges();
-            }catch(Exception ex)
-            {
-                throw ex;
-            }
-            return person;
-        }
-
-        public void Delete(long id)
-        {
-            var result = _context.Persons.SingleOrDefault(p => p.id.Equals(id));
-            if (result != null)
-            {
+                user.Enabled=false;
                 try
                 {
-                    _context.Persons.Remove(result);
+                    _context.Entry(user).CurrentValues.SetValues(user);
                     _context.SaveChanges();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    throw ex;
+                    throw;
                 }
-
             }
-        }
-
-        public List<Person> FindAll()
-        {
-            return _context.Persons.ToList() ;
-        }
-
-        public Person FindByID(long id)
-        {
-              return _context.Persons.SingleOrDefault(p=>p.id.Equals(id)) ;
-        }
-
-        public Person Update(Person person)
-        {
-            if (!Exist(person.id)) return null;
-            var result = _context.Persons.SingleOrDefault(p => p.id.Equals(person.id));
-            if (result != null)
-            {
-                try
-                {
-                    _context.Entry(result).CurrentValues.SetValues(person);
-                    _context.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-               
-            } return person;
-        }
-
-        public bool Exist(long id)
-        {
-            return _context.Persons.Any(p => p.id.Equals(id));
+            return user;
         }
     }
 }
