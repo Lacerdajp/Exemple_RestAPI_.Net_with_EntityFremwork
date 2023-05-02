@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "dca24741-6f6e-4651-9080-51b1b799ca97",
+		"_postman_id": "43eab96f-de4d-412e-9a76-749423f0f7c5",
 		"name": "Exemple_Api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "11641436"
@@ -108,7 +108,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n     \"firstName\": \"Jorge \",\r\n  \"lastName\": \"Duarte\",\r\n  \"address\": \"São João\",\r\n  \"gender\": \"male\"\r\n}",
+							"raw": "{\r\n     \"firstName\": \"Gabriel\",\r\n  \"lastName\": \"LAcerda\",\r\n  \"address\": \"Nova Iguaçu\",\r\n  \"gender\": \"male\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -180,6 +180,44 @@
 						},
 						"method": "DELETE",
 						"header": [],
+						"url": {
+							"raw": "{{urlBase}}/Person/v{{Version}}/{{id}}",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"Person",
+								"v{{Version}}",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PatchPerson",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AcessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{urlBase}}/Person/v{{Version}}/{{id}}",
 							"host": [
@@ -549,6 +587,10 @@
 			"key": "Expiration",
 			"value": "",
 			"type": "string"
+		},
+		{
+			"key": "id",
+			"value": "3"
 		}
 	]
 }

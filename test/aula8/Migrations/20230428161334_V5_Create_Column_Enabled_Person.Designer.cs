@@ -12,8 +12,8 @@ using aula8.Models.Context;
 namespace aula8.Migrations
 {
     [DbContext(typeof(SqlContext))]
-    [Migration("20230427222637_V5_Adicionando_Coluna_A_Person")]
-    partial class V5_Adicionando_Coluna_A_Person
+    [Migration("20230428161334_V5_Create_Column_Enabled_Person")]
+    partial class V5_Create_Column_Enabled_Person
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,6 +70,10 @@ namespace aula8.Migrations
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("address");
+
+                    b.Property<bool>("Enabled")
+                        .HasColumnType("boolean")
+                        .HasColumnName("enabled");
 
                     b.Property<string>("FirstName")
                         .IsRequired()

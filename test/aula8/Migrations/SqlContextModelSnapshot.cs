@@ -68,6 +68,10 @@ namespace aula8.Migrations
                         .HasColumnType("text")
                         .HasColumnName("address");
 
+                    b.Property<bool>("Enabled")
+                        .HasColumnType("boolean")
+                        .HasColumnName("enabled");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("text")

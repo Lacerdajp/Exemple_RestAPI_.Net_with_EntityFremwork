@@ -8,7 +8,7 @@ namespace aula8.Repositorys.Generic
 {
     public class GenericRepository<T> : IRepository<T> where T : BaseEntity
     {
-      protected SqlContext _context;
+      public SqlContext _context;
         private DbSet<T> _dbSet;
         public GenericRepository(SqlContext context)
         {

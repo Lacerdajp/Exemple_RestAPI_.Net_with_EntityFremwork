@@ -14,7 +14,7 @@ namespace aula8.Models
         public string Address { get; set; }
         [Column("gender")]
         public string Gender { get; set; }
-        [Column("enebled")]
+        [Column("enabled")]
         public bool Enabled { get; set; }
     }
 }

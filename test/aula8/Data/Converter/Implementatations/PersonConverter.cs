@@ -15,7 +15,8 @@ namespace aula8.Data.Converter.Implementatations
                 FirstName = origin.FirstName,
                 LastName = origin.LastName,
                 Address = origin.Address,
-                Gender = origin.Gender
+                Gender = origin.Gender,
+                Enabled= origin.Enabled
             };
         }
         public Person Parse(PersonVO origin)
@@ -27,7 +28,8 @@ namespace aula8.Data.Converter.Implementatations
                 FirstName = origin.FirstName,
                 LastName = origin.LastName,
                 Address = origin.Address,
-                Gender = origin.Gender
+                Gender = origin.Gender,
+                Enabled= origin.Enabled
             };
         }
         public List<PersonVO> Parse(List<Person> origin)
