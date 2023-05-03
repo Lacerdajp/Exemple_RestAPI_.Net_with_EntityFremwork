@@ -29,5 +29,26 @@ namespace aula8.Repositorys.Implementations
             }
             return user;
         }
+
+        public List<Person> FindByName(string firstName, string secondName)
+        {
+            if (!string.IsNullOrWhiteSpace(firstName) && !string.IsNullOrWhiteSpace(secondName))
+            {
+                 return _context.Persons.Where(
+                                p => p.FirstName.ToUpper().Contains(firstName.ToUpper()) && p.LastName.ToUpper().Contains(secondName.ToUpper())).ToList();
+            }
+            else if (string.IsNullOrWhiteSpace(firstName) && !string.IsNullOrWhiteSpace(secondName))
+            {
+                return _context.Persons.Where(
+                               p => p.LastName.ToUpper().Contains(secondName.ToUpper())).ToList();
+            }
+            else if (!string.IsNullOrWhiteSpace(firstName) && string.IsNullOrWhiteSpace(secondName))
+            {
+                return _context.Persons.Where(
+                               p => p.FirstName.ToUpper().Contains(firstName.ToUpper())).ToList();
+            }
+            return null;
+
+        }
     }
 }

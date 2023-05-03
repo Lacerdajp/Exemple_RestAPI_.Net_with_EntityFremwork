@@ -45,6 +45,11 @@ namespace aula8.Services.Implementations
             return _converter.Parse( _repository.FindByID(id));
         }
 
+        public List<PersonVO> FindByName(string firstName, string secondName)
+        {
+            return _converter.Parse(_repository.FindByName(firstName, secondName));
+        }
+
         public PersonVO Update(PersonVO person)
         {
 

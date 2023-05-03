@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "43eab96f-de4d-412e-9a76-749423f0f7c5",
+		"_postman_id": "95b0579e-1693-4957-9c17-8d2cda61941d",
 		"name": "Exemple_Api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "11641436"
@@ -86,6 +86,48 @@
 								"Person",
 								"v{{Version}}",
 								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUniquePersonName",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AcessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{urlBase}}/Person/v{{Version}}/findPersonByName?firstName=carlos",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"Person",
+								"v{{Version}}",
+								"findPersonByName"
+							],
+							"query": [
+								{
+									"key": "firstName",
+									"value": "carlos"
+								}
 							]
 						}
 					},

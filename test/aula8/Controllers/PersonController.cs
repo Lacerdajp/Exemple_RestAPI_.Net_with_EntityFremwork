@@ -36,6 +36,15 @@ namespace aula8.Controllers
             if (person == null) return NotFound();
             return Ok(person);
         }
+        [HttpGet("findPersonByName")]
+        [ProducesResponseType(400)]
+        [TypeFilter(typeof(HyperMediaFilter))]
+        public IActionResult GetUnique([FromQuery]string? firstName, [FromQuery]string? lastName)
+        {
+            var person = _personRepository.FindByName(firstName,lastName);
+            if (person == null) return NotFound();
+            return Ok(person);
+        }
         [HttpPatch("{id}")]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Patch(long id)
