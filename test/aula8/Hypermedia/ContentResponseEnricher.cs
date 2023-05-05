@@ -1,4 +1,5 @@
 ﻿using aula8.Hypermedia.Abstract;
+using aula8.Hypermedia.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Routing;
@@ -14,7 +15,7 @@ namespace aula8.Hypermedia
         }
         public virtual  bool CanEnrich(Type ContentType)
         {
-           return ContentType == typeof(T)||ContentType==typeof(List<T>);
+            return ContentType == typeof(T) || ContentType == typeof(List<T>) || ContentType == typeof(PagedSearchVO<T>);
         }
         protected abstract Task EnrichModel(T content, IUrlHelper urlHelper);
         
@@ -41,6 +42,13 @@ namespace aula8.Hypermedia
                 {
                     ConcurrentBag<T> bag = new ConcurrentBag<T>(collection);
                     Parallel.ForEach(bag, (element) =>
+                    {
+                        EnrichModel(element, urlHelper);
+                    });
+                }
+                else if (okObjectResult.Value is PagedSearchVO<T> pagedSearch)
+                {
+                    Parallel.ForEach(pagedSearch.List.ToList(), (element) =>
                     {
                         EnrichModel(element, urlHelper);
                     });

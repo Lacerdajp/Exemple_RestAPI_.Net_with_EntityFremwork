@@ -3,6 +3,7 @@ using aula8.Models;
 using aula8.Repositorys;
 using aula8.Data.Converter.Implementatations;
 using aula8.Data.VO;
+using aula8.Hypermedia.Utils;
 
 namespace aula8.Services.Implementations
 {
@@ -48,6 +49,17 @@ namespace aula8.Services.Implementations
         public List<PersonVO> FindByName(string firstName, string secondName)
         {
             return _converter.Parse(_repository.FindByName(firstName, secondName));
+        }
+
+        public PagedSearchVO<PersonVO> FindWithPagedSearch(
+            string name, string sortDirection, int pageSize, int page)
+        {
+            var offset =page>0?(pageSize-1) * pageSize: 0;
+            var sort=(!string.IsNullOrWhiteSpace(sortDirection))&& !sortDirection.Equals("desc")?"asc":"desc";
+            var size = (pageSize < 1) ? 1 : pageSize;
+            string query = @"";
+            
+            return new PagedSearchVO<PersonVO> { };
         }
 
         public PersonVO Update(PersonVO person)

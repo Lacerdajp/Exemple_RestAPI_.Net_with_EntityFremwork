@@ -11,5 +11,8 @@ namespace aula8.Repositorys
         T Update(T item);
         void Delete(long id);
         bool Exist(long id);
+
+        List<T> FindWithPagedSearch(string query);
+        int GetCount(string query);
     }
 }
