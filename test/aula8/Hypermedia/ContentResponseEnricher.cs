@@ -46,13 +46,13 @@ namespace aula8.Hypermedia
                         EnrichModel(element, urlHelper);
                     });
                 }
-                else if (okObjectResult.Value is PagedSearchVO<T> pagedSearch)
-                {
-                    Parallel.ForEach(pagedSearch.List.ToList(), (element) =>
-                    {
-                        EnrichModel(element, urlHelper);
-                    });
-                }
+                //else if (okObjectResult.Value is PagedSearchVO<T> pagedSearch)
+                //{
+                //    Parallel.ForEach(pagedSearch.List.ToList(), (element) =>
+                //    {
+                //        EnrichModel(element, urlHelper);
+                //    });
+                //}
                 await Task.FromResult<object>(null);
             }
         }

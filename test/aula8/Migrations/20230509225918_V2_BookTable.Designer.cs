@@ -12,8 +12,8 @@ using aula8.Models.Context;
 namespace aula8.Migrations
 {
     [DbContext(typeof(SqlContext))]
-    [Migration("20230428161334_V5_Create_Column_Enabled_Person")]
-    partial class V5_Create_Column_Enabled_Person
+    [Migration("20230509225918_V2_BookTable")]
+    partial class V2_BookTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

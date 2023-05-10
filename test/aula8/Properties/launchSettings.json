@@ -8,8 +8,10 @@
       "sslPort": 44332
     }
   },
+
   "profiles": {
     "aula8": {
+
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
